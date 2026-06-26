@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import 'tsconfig-paths/register';
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
