@@ -1,6 +1,6 @@
 import{Page,Locator} from '@playwright/test';
 import { BasePage } from './base.page';
-
+import { env } from '@config/env';
 export class LoginPage extends BasePage{
     readonly usernameInput:Locator;
     readonly passwordInput :Locator;
@@ -17,7 +17,7 @@ export class LoginPage extends BasePage{
     }
 
     async open(){
-        await this.page.goto('https://the-internet.herokuapp.com/login');
+        await this.page.goto(`${env.UI_BASE_URL}/login`);
     }
     async login(username:string,password:string){
         await this.usernameInput.fill(username);

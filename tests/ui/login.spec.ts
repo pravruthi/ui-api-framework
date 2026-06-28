@@ -5,7 +5,7 @@ test.describe('Login Page',()=>{
     test("logs in with valid Credentials",async({page})=>{
         const loginPage = new LoginPage(page);
         await loginPage.open()
-        await loginPage.login('tomsmith','SuperSecretPassword');
+        await loginPage.login('tomsmith','SuperSecretPassword!');
         const message = await loginPage.getFlashMessage()
         expect(message).toContain('You logged into a secure area');
 
