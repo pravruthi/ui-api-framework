@@ -9,9 +9,9 @@ export class LoginPage extends BasePage{
     
     constructor(page:Page){
         super(page);
-        this.usernameInput =page.locator('#username');
-        this.passwordInput =page.locator('#password');
-        this.loginButton = page.locator('button[type="submit"]')
+        this.usernameInput =page.getByLabel('Username')
+        this.passwordInput =page.getByLabel('Password');
+        this.loginButton = page.getByRole('button',{name:'Login'})
         this.flashMessage =page.locator('#flash');
 
     }
@@ -20,12 +20,14 @@ export class LoginPage extends BasePage{
         await this.page.goto(`${env.UI_BASE_URL}/login`);
     }
     async login(username:string,password:string){
+
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password)
         await this.loginButton.click()
     }
 
     async getFlashMessage(){
+        await this.flashMessage.waitFor({state:'visible'})
         return await this.flashMessage.textContent();
     }
 }
